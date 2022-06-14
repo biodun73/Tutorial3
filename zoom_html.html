@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Image</title>
+    <!--style-->
+    <style>
+        /*change the background of the  body to lightgray*/
+          /*change the background color */
+       body{
+           background-color: rgb(51, 51, 58);
+           overflow:hidden;
+           animation:  body 6s ease-in-out infinite alternate;
+       }
+       /*change the color of the title to white*/
+       /*move the text to the center*/
+       h1{
+           color: white;
+           text-align: center;
+       }
+
+       /*move the image to the center of the page*/
+       .car{
+           margin-left: 250px;
+           margin-top: 120px;
+       }
+       /*create image animation*/
+       img{
+           animation: car 6s ease-in-out infinite alternate;
+       }
+       /*zoom the image in and out*/
+       @keyframes car{
+           from{
+               width: 650px;
+           }
+           to{
+               width: 450px;
+           }
+       }
+       @keyframes body{
+           from{
+               background-color: coral;
+           }
+       }
+    </style>
+</head>
+<body>
+    <!--Title-->
+    <h1>ZOOM IMAGE</h1>
+    <!--image to zoom-->
+    <div class="car">
+         <img src="CITYPICS/car5.png" alt="car">
+    </div>
+</body>
+</html>

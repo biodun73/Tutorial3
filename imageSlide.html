@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Image</title>
+    <!--style-->
+    <style>
+        body{
+            background-color: lightsalmon;
+        }
+        .images{
+            width: 900px;
+            height: 600px;
+            border: 1px solid black;
+            margin-left: 280px;
+            background-color: transparent;
+        }
+        img{
+            position: absolute;
+            width: 900px;
+            height: 600px;
+        }
+        .butt{
+            position: absolute;
+            bottom: 10px;
+        }
+        button{
+            width: 150px;
+            height: 35px;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--class-->
+    <div class="images">
+           <div class="img1">
+               <!--image-->
+               <img src="ANIMALS/antelope.jpg" alt="Antelope" id="imag" onmouseover="image2()">
+           </div>
+           <!--buttons-->
+           <div class="butt">
+               <button onclick="image()">Change1</button>
+               <button onclick="image1()">Change2</button>
+           </div>
+    </div>
+     <!--javascript codes-->
+     <script>
+         var im = document.getElementById('imag');
+  //change the image to dog//
+         function image(){
+             im.src='ANIMALS/dog.jpg';
+             im.style.width='900px';
+             im.style.height='600px';
+
+         }
+           //change the image to zebra//
+         function image1(){
+             im.src='ANIMALS/zebra.jpg';
+             im.style.width='900px';
+             im.style.height='600px';
+
+         }
+         //change the image to default//
+         function image2(){
+             im.src='ANIMALS/antelope.jpg';
+             im.style.width='900px';
+             im.style.height='600px';
+
+         }
+     </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image zoom</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            position: relative;
+        }
+        .preview{
+            position: absolute;
+            right: 0;
+            top: 0%;
+            width: 600px;
+            height: 400px;
+            border: 2px solid black;
+        }
+        .imgzoom{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image zoom</h1>
+    <!--container to keep the image and the lens-->
+    <div class="container">
+        <img src="CITYPICS/paris.jpg" alt="paris" width="600" height="400" id="paris">
+        <!--div for the lens-->
+        <div id="myresult" class="preview"></div>
+    </div>
+    <script>
+        function imageZoom(zoom){
+            var img, imagelens, preview;
+            img = document.getElementById("paris");
+            preview = document.getElementById("myresult");
+            /*create imagelens*/
+            imagelens = document.createElement("div");
+            /*create imagelens attribute*/
+            imagelens.setAttribute("class", "imgzoom");
+
+            /*insert the imagelens attribute to the parent element*/
+            img.parentElement.insertBefore(imagelens, img);
+
+            /*set the background */
+            preview.style.backgroundImage = "url('"+img.src+"')";
+            preview.style.backgroundSize = (img.width * zoom) + "px" + (img.height * zoom) + "px";
+
+            /*move the cursor to zoom the image*/
+            imagelens.addEventListener("mousemove",lenMove);
+            img.addEventListener("mousemove",lenMove);
+
+            /*create another function called cursorPos*/
+            function cursorPos(event){
+                var c, x=0,y=0;
+                e = event || window.event;
+                /*get the correct x and y position of the image*/
+                c = img.getBoundingClientRect();
+                x = e.pageX - c.left;
+                y = e.pageY - c.top;
+                return{x, y};
+            }
+            /*create another function called lenMove()*/
+            function lenMove(event){
+                var position, x, y;
+                /*prevent the cursor to move beyond the line border*/
+                event.preventDefault();
+                position = cursorPos(event);
+                x = position.x - (imagelens.offsetWidth/2);
+                y = position.y - (imagelens.offsetHeight/2);
+
+                /*create if statement  for imagelens not move outside the border*/
+               if(x>img.width - imagelens.offsetWidth){
+                  x = img.width - imagelens.offsetWidth;
+               }
+               if(x<0){
+                   x=0;
+               }
+               if(y>img.height - imagelens.offsetHeight){
+                  y = img.height - imagelens.offsetHeight;
+               }
+               if(y<0){
+                   y=0;
+               }
+               /*set the lens position*/
+               imagelens.style.left = x + "px";
+               imagelens.style.top = y + "px";
+
+               /*display the result of the zoom image*/
+               preview.style.backgroundPosition = "-"  +  (x * zoom) +  "px  -"  +  (y *zoom) + "px";
+            }
+
+        }
+        imageZoom(10);
+    </script>
+</body>
+</html>

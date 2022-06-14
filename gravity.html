@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity</title>
+    <!--style css-->
+    <style>
+        .container{
+            width: 600px;
+            height: 400px;
+            position: relative;
+            background-color: black;
+        }
+        #ball{
+            width: 60px;
+            height: 60px;
+            background-color: red;
+            position: absolute;
+            margin-left: 270px;
+            border-radius: 50%;
+        }
+        #count{
+            position: absolute;
+            top: 10px;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            color: white;
+          
+        }
+    </style>
+</head>
+<body>
+    <!---container-->
+    <div class="container">
+        <!--ball-->
+        <div id="ball">
+        </div>
+       
+    </div>
+ 
+    <!---javascript code-->
+    <script>
+        //set variables
+        var gravity = 0.9;
+        var speed = 5;
+        var ballPosition = 0;
+        var heightY = 339;
+        //set up function
+        function ballGravity(){
+            //initial position
+            var pos = document.getElementById('ball');
+            if(this.ballPosition + this.speed >  heightY || this.ballPosition +this.speed < 0){
+                this.speed = -this.speed * this.gravity;
+               
+            }
+            else{
+                this.ballPosition+=2;
+            }
+          
+           this.ballPosition+=this.speed;
+            pos.style.top = this.ballPosition + "px";
+            //console.log( pos.style.top);
+      
+        }
+        //setInteval
+        setInterval(ballGravity,10);
+
+  
+       
+      
+    </script>
+</body>
+</html>
